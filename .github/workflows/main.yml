@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Getting label
-      uses: klaudioz/testing_github_actions@develop
+      uses: klaudioz/testing_github_actions@master
       if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
       with:
         function-name: 'e2e'
