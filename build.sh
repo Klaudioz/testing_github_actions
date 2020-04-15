@@ -1,8 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh -l
 
-set -o errexit
-set -o nounset
-set -o xtrace
-set -o pipefail
-
-echo "Hello GitHub"
+echo "Hello $1"
+time=$(date)
+echo "::set-output name=time::$time"
