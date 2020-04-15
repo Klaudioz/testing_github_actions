@@ -10,3 +10,4 @@ inputs:
 run: |
      chmod +x ./build.sh
      ./build.sh ${{ inputs.function-name }} ${{ inputs.cloud-name }}
+shell: bash
