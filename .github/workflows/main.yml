@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Getting label
       if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
-      uses: klaudioz/testing_github_actions@develop # I'd get the name of the branch
+      uses: klaudioz/testing_github_actions@develop
       with:
         function-name: 'e2e'
         cloud-name: 'google'
