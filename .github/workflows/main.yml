@@ -10,6 +10,3 @@ jobs:
       uses: klaudioz/testing_github_actions@master
       with:
         who-to-greet: 'Claudio'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
