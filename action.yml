@@ -4,7 +4,7 @@ inputs:
   function-name:
     description: 'Get function parameter'
     required: true
- cloud-name:
+  cloud-name:
     description: 'Get cloud parameter'
     required: true
 runs:
