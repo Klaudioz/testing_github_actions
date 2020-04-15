@@ -9,7 +9,7 @@ jobs:
     - name: getting label
       id: label
       if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
-      uses: klaudioz/testing_github_actions@master
+      uses: klaudioz/testing_github_actions@develop
       with:
         function-name: 'e2e'
         cloud-name: 'google'
