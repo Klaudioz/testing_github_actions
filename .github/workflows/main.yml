@@ -4,6 +4,7 @@ on:
 
 jobs:
   tests:
+    runs-on: ubuntu-18.04
     steps:
     - name: Getting label
       if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
