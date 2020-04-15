@@ -1,12 +1,15 @@
-name: 'Hello World'
-description: 'Get the tag'
+name: 'Automation to kick off certain tests in certain clouds for a PR'
+description: 'Get the label'
 inputs:
-  tag-name:  # id of input
-    description: 'Get tag parameter'
+  function-name:
+    description: 'Get function parameter'
     required: true
-    default: 'TAG'
+ cloud-name:
+    description: 'Get cloud parameter'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.tag-name }}
+    - ${{ inputs.function-name }}
+    - ${{ inputs.cloud-name }}

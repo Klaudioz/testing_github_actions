@@ -1,12 +1,17 @@
-on: [push]
+on:
+  pull_request:
+    types: [opened]
+  push:
+    branches:
+      - master
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to show the tag
+  tests:
+    runs-on: ubuntu-18.04
     steps:
-    - name: Hello world action step
-      id: hello
+    - name: Getting label
       uses: klaudioz/testing_github_actions@master
+      if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
       with:
-        tag-name: 'Claudio'
+        function-name: 'e2e'
+        cloud-name: 'google'
