@@ -7,9 +7,12 @@ inputs:
   cloud-name:
     description: 'Get cloud parameter'
     required: true
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.function-name }}
-    - ${{ inputs.cloud-name }}
+#runs:
+  #using: 'docker'
+  #image: 'Dockerfile'
+  #args:
+  # - ${{ inputs.function-name }}
+  # - ${{ inputs.cloud-name }}
+run: |
+     chmod +x ./build.sh
+     ./build.sh ${{ inputs.function-name }} ${{ inputs.cloud-name }}
