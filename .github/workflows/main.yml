@@ -1,14 +1,17 @@
 on:
   pull_request:
     types: [opened]
+  push:
+    branches:
+      - master
 
 jobs:
   tests:
     runs-on: ubuntu-18.04
     steps:
     - name: Getting label
-      if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
       uses: klaudioz/testing_github_actions@develop
+      if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
       with:
         function-name: 'e2e'
         cloud-name: 'google'
