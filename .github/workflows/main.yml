@@ -3,13 +3,11 @@ pull_request:
     - master
 
 jobs:
-  check_labels:
-    name: Checking label
+  tests:
     steps:
-      - name: getting label
-        if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
-        uses: klaudioz/testing_github_actions@master
-        with:
-          function-name: 'e2e'
-          cloud-name: 'google'
-        run: echo "::set-env name=BRANCH::$(echo ${GITHUB_REF##*/})"
+    - name: Getting label
+      if: contains(github.event.pull_request.labels.*.name, 'e2e_google')
+      uses: klaudioz/testing_github_actions@master
+      with:
+        function-name: 'e2e'
+        cloud-name: 'google'
