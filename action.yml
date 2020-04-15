@@ -7,7 +7,4 @@ inputs:
   cloud-name:
     description: 'Get cloud parameter'
     required: true
-run: |
-     chmod +x ./build.sh
-     ./build.sh ${{ inputs.function-name }} ${{ inputs.cloud-name }}
-shell: bash
+run: echo "test"
