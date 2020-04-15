@@ -1,12 +1,12 @@
 name: 'Hello World'
-description: 'Greet someone and record the time'
+description: 'Get the tag'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  tag-name:  # id of input
+    description: 'Get tag parameter'
     required: true
-    default: 'World'
+    default: 'TAG'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.tag-name }}
