@@ -1,5 +1,5 @@
 name: 'Automation to kick off certain tests in certain clouds for a PR'
-description: 'Get the label'
+description: 'Checking label'
 inputs:
   function-name:
     description: 'Get function parameter'
