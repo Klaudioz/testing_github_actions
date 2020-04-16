@@ -1,3 +1,7 @@
-FROM alpine:3.10
-COPY build.sh /build.sh
-ENTRYPOINT ["/build.sh"]
+FROM ubuntu:18.04
+
+USER root
+
+COPY pr_tests.sh /pr_tests.sh
+
+ENTRYPOINT ["/pr_tests.sh"]
