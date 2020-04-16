@@ -1,15 +1,11 @@
 name: 'Automation to kick off certain tests in certain clouds for a PR'
 description: 'Get the label'
 inputs:
-  function-name:
+  labels:
     description: 'Get function parameter'
-    required: true
-  cloud-name:
-    description: 'Get cloud parameter'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.function-name }}
-    - ${{ inputs.cloud-name }}
+    - ${{ inputs.labels }}
