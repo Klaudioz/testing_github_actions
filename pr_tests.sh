@@ -13,4 +13,9 @@
 #
 # ##################################################
 
-echo "Labels without processing: $1"
+LABELS=(echo $1 | jq '.[].name')
+
+for ELEMENT in ${LABELS[@]}
+do
+  echo Label: $ELEMENT.
+done
