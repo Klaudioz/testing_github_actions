@@ -7,4 +7,9 @@ inputs:
   cloud-name:
     description: 'Get cloud parameter'
     required: true
-runs: echo "test"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.function-name }}
+    - ${{ inputs.cloud-name }}
