@@ -13,9 +13,12 @@
 #
 # ##################################################
 
-LABELS=(echo $1 | jq '.[].name')
+#LABELS=(echo $1 | jq '.[].name')
 
-for ELEMENT in ${LABELS[@]}
-do
-  echo Label: $ELEMENT.
+for row in $(echo "$1" | jq -c '.[]'); do
+    _jq() {
+     echo ${row} | jq -c ${1}
+    }
+
+   echo $(_jq '.name')
 done
