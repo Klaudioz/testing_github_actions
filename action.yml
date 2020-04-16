@@ -6,6 +6,6 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: './images/Dockerfile'
+  image: 'images/Dockerfile'
   args:
     - ${{ inputs.labels }}
