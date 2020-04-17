@@ -14,7 +14,10 @@ labels_json=$(echo "${1}" | sed 's/\\//g' | tr -d '\n' |tr -d ' ')
 
 for row in $(echo "${labels_json}" | jq -c '.[]'); do
     _jq() {
-     echo ${row} | jq -c ${1}
+     echo "${row}" | jq -c "${1}"
     }
-   echo $(_jq '.name')
+   #echo "$(_jq '.name')"
+   _jq '.name'
 done
+
+# For now it's only echoing the labels
