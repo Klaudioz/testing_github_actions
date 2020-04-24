@@ -1,9 +1,5 @@
-FROM ubuntu:18.04
-
-USER root
-
+FROM alpine:3.7
 COPY pr_tests.sh /pr_tests.sh
-
-RUN apt-get update && apt-get install -y jq
+RUN apk add --no-cache curl jq bash
 
 ENTRYPOINT ["/pr_tests.sh"]
