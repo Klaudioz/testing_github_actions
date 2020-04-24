@@ -4,20 +4,23 @@
 # -----------------------------------
 # Automation utility which is able to run certain test in a certain cloud
 # getting labels for a PR in GitHub. If the PR doesn't have any of this
-# particular labels, this function will never run.
+# particular labels, this code won't execute anything.
 # -----------------------------------
 #
 # ##################################################
 
-# Removing spaces, slashs and newlines
+# Cleaning the json. Removing spaces, slashs and newlines
 labels_json=$(echo "${1}" | sed 's/\\//g' | tr -d '\n' |tr -d ' ')
 
+# Variables
+RESOURCE_ID="124159" # I will need to update this ID when the new shippable job is created
+
+# Storing the name of the labels to an array using jq
 for row in $(echo "${labels_json}" | jq -c '.[]'); do
-    _jq() {
-     echo "${row}" | jq -c "${1}"
-    }
-   #echo "$(_jq '.name')"
-   _jq '.name'
+    labels_str+=( $(echo "${row}" | jq -c '.name') )
 done
 
-# For now it's only echoing the labels
+if [[ "${labels_str[@]}" =~ "e2e_gcloud" ]] || [[ "${labels_str[@]}" =~ "e2e_aws" ]] || [[ "${labels_str[@]}" =~ "e2e_do" ]] || [[ "${labels_str[@]}" =~ "e2e_azure" ]] || [[ "${labels_str[@]}" =~ "e2e_eks" ]]; then
+    CLOUD=printf '%s\n' ${labels_str[@]} | grep -P '^e2e$' | cut -d "_" -f2
+    curl -sX POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: apiToken ${shippable_token}" -d '{"globalEnv": {"test_cloud": $CLOUD}}' "https://api.shippable.com/resources/${RESOURCE_ID}/triggerNewBuildRequest"
+fi
