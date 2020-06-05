@@ -23,7 +23,8 @@ done
 if [[ "${labels_str[@]}" =~ "e2e_gcloud" ]] || [[ "${labels_str[@]}" =~ "e2e_aws" ]] || [[ "${labels_str[@]}" =~ "e2e_do" ]] || [[ "${labels_str[@]}" =~ "e2e_azure" ]] || [[ "${labels_str[@]}" =~ "e2e_eks" ]]; then
     CLOUD=$(printf '%s\n' ${labels_str[@]} | grep 'e2e' | head -1 | cut -d "_" -f2)
     if [ -n "$CLOUD" ]; then
-        echo $HELLO
+        echo "${shippable_token}"
+        echo "${CLOUD}"
         curl -v -sX POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: apiToken ${shippable_token}" -d '{"globalEnv": {"test_cloud": "$CLOUD"}}' "https://api.shippable.com/resources/${RESOURCE_ID}/triggerNewBuildRequest"
     fi
 fi
